@@ -1,0 +1,20 @@
+{
+    "name": "Post-School-Course PWA",
+    "short_name": "Post School",
+    "description": "A PWA for Post School",
+    "icons": [
+        {
+            "src": "/public/pic/icon-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/pic/icon-512.png",
+            "sizes" : "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#fff"
+}
