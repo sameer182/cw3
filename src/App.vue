@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <div>
+    <div class="center">
+      <span>
+        <font-awesome-icon icon="fas fa-text-height" />
+        Test Console
+      </span>
 
       <strong class="test-elemen">HTTPS link: <a v-bind:href="serverURL" target="_blank">link</a></strong>
 
@@ -25,7 +29,7 @@
 
       <button class="btn btn-primary" v-on:click="showCheckout" :disabled="!showCheckoutButton">
         {{ itemsInCart }}
-        <span class="fa-solid fa-cart-shopping"></span> Checkout
+        <font-awesome-icon icon="fa-solid fa-cart-shopping" /> Checkout
       </button>
 
     </header>
@@ -51,16 +55,18 @@
       </div>
     </div>
     <main>
- <component  :is="currentview" :cart="cart" :products="products" :showProduct="showProduct" @add-item-to-cart="addItemToCart" 
-              @submit-order="submitOrder" @remove-item="removeItemFromCart">
-  </component>
- </main>
+      <component :is="currentView" :cart="cart" :products="products" :showProduct="showProduct" :order="order"
+        @add-item-to-cart="addItemToCart" @submit-order="submitOrder" @remove-item="removeItemFromCart">
+      </component>
+    </main>
   </div>
 </template>
 
+
+
 <script>
 import Lesson from "./components/Lesson.vue";
-import Checkout from "./components/CheckOut.vue";
+import Checkout from "./components/Checkout.vue";
 export default {
   name: "App",
   data() {
@@ -74,15 +80,13 @@ export default {
       sitename: "Bridge Course Store",
       showProduct: true,
       products: [],
-      name: '',
-      phoneNumber: '',
       showArrow: true,
       showDefault: false,
       searchText: '',
+      order:{name:"", phoneNumber:""},
       cart: [],
-      order: {},
       serverURL: "https://post-school-env.eba-ezt3sksp.eu-west-2.elasticbeanstalk.com/collections/lessons",
-      currentview: "Lesson",
+      currentView: "Lesson",
     }
   },
   components: {
@@ -108,14 +112,6 @@ export default {
     itemsInCart: function () {
       return this.cart.length || "";
     },
-    checkInput: function () {
-      const namePattern = /^[a-zA-Z ]+$/;
-      return namePattern.test(this.name);
-    },
-    checkPhoneInput: function () {
-      const phonePattern = /^[\d]{10}$/;
-      return phonePattern.test(this.phoneNumber);
-    },
     isFormValid: function () {
       return this.checkInput && this.checkPhoneInput;
     },
@@ -125,9 +121,16 @@ export default {
 
   },
   methods: {
-    showCheckout: function () {
-      this.showProduct = this.showProduct ? false : true;
+    showCheckout: function() {
+      if (this.cart.length > 0) {
+        if (this.currentView === "Lesson")
+          this.currentView = "Checkout";
+        else
+          this.currentView = "Lesson";
+      }
+
     },
+
     addItemToCart: function (item) {
       if (item.availableInventory >= 1) {
         this.cart.push(item);
@@ -138,7 +141,7 @@ export default {
       const removedItem = this.cart.splice(index, 1)[0];
       removedItem.availableInventory += 1;
       if (this.cart.length == 0) {
-        this.showProduct = true;
+        this.currentView = "Lesson";
       }
     },
     canAddToCart: function (item) {
@@ -169,8 +172,6 @@ export default {
     //Fetch functions that saves new order with POST when submitted and PUT method that updates the available space
     submitOrder: function () {
       //Assigning data to the order object
-      this.order.name = this.name;
-      this.order.phoneNumber = this.phoneNumber;
       this.order.id = this.cartItemsWithQuantity.map(a => a.item.id);
       this.order.spaces = this.cartItemsWithQuantity.map(item => item.quantity);
       fetch('https://post-school-env.eba-ezt3sksp.eu-west-2.elasticbeanstalk.com/submit-order', {
@@ -248,7 +249,7 @@ export default {
     },
     reloadPage() {
         window.location.reload();
-    },
+},
 
   },
   watch: {
