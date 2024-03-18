@@ -1,6 +1,8 @@
 var cacheName = "post-school-v1";
 var cacheFiles = [
     "index.html",
+    "pic/icon-192.png",
+    "pic/icon-512.png",
     "https://post-school-env.eba-ezt3sksp.eu-west-2.elasticbeanstalk.com/pic/accounting.png",
     "https://post-school-env.eba-ezt3sksp.eu-west-2.elasticbeanstalk.com/pic/astronomy.png",
     "https://post-school-env.eba-ezt3sksp.eu-west-2.elasticbeanstalk.com/pic/business.png",

@@ -4,8 +4,8 @@
     "description": "A PWA for Post School",
     "icons": [
         {
-            "src": "/public/pic/icon-32.png",
-            "sizes": "32x32",
+            "src": "/public/pic/icon-192.png",
+            "sizes": "192x192",
             "type": "image/png"
         },
         {
