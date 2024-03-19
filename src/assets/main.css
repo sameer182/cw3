@@ -35,17 +35,8 @@ body {
   padding-top: 130px;
 }
 
-
-
 h1 {
-  padding-left: 550px;
   text-align: center;
-
-}
-
-.h1 {
-  text-align: center;
-  padding-left: 50px;
 }
 
 main {
@@ -58,14 +49,12 @@ button {
   margin-bottom: 5px;
 }
 
-/* Main container style */
 #app {
   max-width: 100%;
   margin: auto;
   padding: auto;
 }
 
-/* Define the grid container style */
 .product-container {
   width: 100%;
   display: flex;
@@ -74,10 +63,9 @@ button {
   flex-wrap: wrap;
 }
 
-/* Define the individual product box style */
 .product-box {
   display: flex;
-  width: 30%;
+  width: calc(30% - 20px);
   border: 5px solid #606d82;
   padding: 20px;
   border-radius: 10px;
@@ -86,22 +74,32 @@ button {
 
 .product-box1 {
   display: inline-block;
-  width: 30%;
-  height: 500px;
+  width: calc(30% - 20px);
   border: 5px solid #606d82;
   padding: 20px;
   border-radius: 10px;
   margin: 10px;
-  vertical-align: top;
   flex-wrap: wrap;
 }
-
 
 .btn.btn-primary {
   color: #fff;
   border-radius: 10px;
   background-color: #007bff;
   border-color: #007bff;
+}
+
+.btn.btn-dark {
+  border-radius: 1000px;
+  color: black;
+  background-color: silver;
+  border-color: black;
+}
+
+.btn.btn-dark:hover {
+  border-color: black;
+  background-color: darkgrey;
+  color: #000;
 }
 
 .btn.btn-primary:hover {
@@ -174,4 +172,13 @@ button {
   margin-top: 20px;
   margin-bottom: 100px;
   height: 60px;
+}
+
+/* Mobile Responsive Styles */
+@media only screen and (max-width: 768px) {
+
+  .product-box,
+  .product-box1 {
+    width: calc(50% - 20px);
+  }
 }

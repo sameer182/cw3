@@ -5,19 +5,21 @@
         <font-awesome-icon icon="fas fa-text-height" />
         Test Console
       </span>
+      
+      <button class="btn btn-dark">
+        <a v-bind:href="serverURL" target="_blank">HTTPS</a>
+      </button>
 
-      <strong class="test-elemen">HTTPS link: <a v-bind:href="serverURL" target="_blank">link</a></strong>
-
-      <button @click="deleteAllCaches" class="test-elem">
+      <button @click="deleteAllCaches" class="btn btn-dark">
         <font-awesome-icon icon="fas fa-trash" />
         Delete All Caches
       </button>
 
-      <button @click="unregisterAllServiceWorkers" class="test-elem">
+      <button @click="unregisterAllServiceWorkers" class="btn btn-dark">
         <font-awesome-icon icon="fab fa-uniregistry" />
         Unregister All ServiceWorkers
       </button>
-      <button @click="reloadPage" class="test-elem">
+      <button @click="reloadPage" class="btn btn-dark">
         <font-awesome-icon icon="fas fa-sync" />
         Reload Page
       </button>
