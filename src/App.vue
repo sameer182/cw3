@@ -35,7 +35,7 @@
       </button>
 
     </header>
-    <!-- Search bar and sort buttons --->
+    <!-- Search bar and sort buttons -->
     <div class="button-container" v-if="showProduct">
       <div class="row">
         <div class="col-12 col-md-7 offset-md-3">
